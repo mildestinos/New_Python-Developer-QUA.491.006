@@ -75,3 +75,6 @@ black – Formatador automático de código (segue o espírito da PEP 8).
 
 pylint – Linter mais completo, verifica estilo e erros.
 
+13/06........
+dever de casas
+
