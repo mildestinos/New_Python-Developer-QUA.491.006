@@ -2,7 +2,6 @@
 git config --global user.name "mildestinos"
 git config --global user.email "adm.esv@gmail.com"
 
-git config --global --list
 
 😒Repositorio remoto
 antes de fazer o commit
@@ -74,4 +73,15 @@ flake8 – Linter para verificar se o código segue a PEP 8.
 black – Formatador automático de código (segue o espírito da PEP 8).
 
 pylint – Linter mais completo, verifica estilo e erros.
+
+
+Apagar meus usuário
+git config --global user.email "adm.esv@gmail.com"
+git config --global --unset user.email
+
+12/06/2025
+
+👍laço de repetição
+
+
 
