@@ -1,46 +1,39 @@
-
-
-nome = input('Informe seu nome: ')
-Peso = int(input('Informe seu peso: '))
-Altura = float(input('Informe sua altura em metros: ').replace(',', '.'))
-
-# saída de dados
-print(f'Nome", {nome}!')
-print(f'{Peso}: {type(Peso)}.')
-print(f'{Altura}: {type(Altura)}')
-
-
 while True:
     try:
-        
-        calculo = Peso * Altura**2
+        # Entrada de dados
+        nome = input('Informe seu nome: ').strip().title()
+        peso = float(input('Informe seu peso em kg: ').replace(',', '.'))
+        altura = float(input('Informe sua altura em metros: ').replace(',', '.'))
 
-        print(f"\nResultado: {calculo:.2f} kg/m² de IMC.")
-        
-        if calculo <= 18.5:
-            print("✅ Abaixo do peso.")
+        # Cálculo do IMC
+        imc = peso / altura**2
+        print(f"\nO valor do IMC de {nome} é: {imc:.2f}.")
+
+        # Condições baseadas no IMC
+        if imc < 18.5:
+            print(f"{nome} está abaixo do peso.")
+        elif imc < 25:
+            print(f"{nome} está no peso ideal.")
+        elif imc < 30:
+            print(f"{nome} está com sobrepeso.")
+        elif imc < 35:
+            print(f"{nome} está com obesidade grau I.")
+        elif imc < 40:
+            print(f"{nome} está com obesidade grau II.")
         else:
-            if calculo >= 18.5 and calculo < 25:
-                print("✅ Peso normal.")
-            if calculo >= 30 and calculo < 35:
-                print("✅ Sobrepeso.")
-            if calculo >= 35 and calculo < 40:
-                print("✅ Obesidade grau 1.")
-            if calculo >=40:
-                print("✅ Obesidade grau 2.")
+            print(f"{nome} está com obesidade grau III (mórbida).")
 
-    except ValueError:
-        print("❌ Por favor, insira valores numéricos válidos.\n")
-        continue
+        # Deseja refazer?
+        while True:
+            prosseguir = input("\nDeseja refazer? (s/n): ").strip().lower()
+            if prosseguir in ["s", "n"]:
+                break
+            else:
+                print("Opção inválida. Digite apenas 's' ou 'n'.")
 
-    opcao = input("\nDeseja verificar novamente? (s/n): ").strip().lower()
-    
-    match opcao:
-        case "s":
-            continue
-        case "n":
-            print("Programa finalizado. Obrigado por usar o programa!")
+        if prosseguir == "n":
+            print("Encerrando o programa. Até logo!")
             break
-        case _:
-            print("Opção inválida. Encerrando o programa.")
-            break
+
+    except Exception as e:
+        print(f"Não foi possível calcular o IMC. Erro: {e}")
