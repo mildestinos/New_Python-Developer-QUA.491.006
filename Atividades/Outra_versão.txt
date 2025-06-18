@@ -1,0 +1,46 @@
+import os  # Importa o módulo 'os' para interagir com o sistema operacional (ex: limpar a tela)
+import math  # Importa o módulo 'math' que fornece funções e constantes matemáticas como pi (π)
+
+while True:  # Inicia um loop infinito para manter o menu ativo até o usuário decidir sair
+    # Limpa a tela do terminal para manter a interface limpa
+    # 'cls' é usado no Windows, 'clear' em Linux/macOS
+    os.system('cls' if os.name == 'nt' else 'clear')  
+
+    # Exibe o menu com as opções disponíveis
+    print("=== 😋MENU ERIC  ===")
+    print("1 - Calcular área de um círculo")
+    print("2 - Calcular circunferência")
+    print("3 - Sair do programa")
+
+    # Lê a opção do usuário e remove espaços em branco extras
+    escolha = input("Escolha uma opção: ").strip()
+
+    # Opção 1: Calcular a área do círculo
+    if escolha == "1":
+        # Solicita o raio do círculo, substitui vírgula por ponto para evitar erro de conversão
+        raio = float(input("Digite o raio do círculo: ").replace(",", "."))
+        # Calcula a área usando a fórmula A = π * r²
+        area = math.pi * raio ** 2
+        # Exibe a área com duas casas decimais
+        print(f"A área do círculo é: {area:.2f}")
+
+    # Opção 2: Calcular a circunferência do círculo
+    elif escolha == "2":
+        # Solicita o raio
+        raio = float(input("Digite o raio do círculo: "))
+        # Calcula a circunferência usando a fórmula C = 2 * π * r
+        circunferencia = 2 * math.pi * raio
+        # Exibe a circunferência com duas casas decimais
+        print(f"A circunferência é: {circunferencia:.2f}")
+
+    # Opção 3: Sair do programa
+    elif escolha == "3":
+        print("Saindo do programa...")
+        break  # Interrompe o loop e encerra o programa
+
+    # Caso o usuário digite uma opção inválida
+    else:
+        print("Opção inválida.")
+
+    # Pausa a execução para que o usuário veja a saída antes de limpar a tela novamente
+    input("\nPressione Enter para continuar...")

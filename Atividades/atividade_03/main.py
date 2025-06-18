@@ -2,17 +2,18 @@ import os
 import math
 
 while True:
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system('cls' if os.name == 'nt' else 'clear')#serve para os dois sistemas#
 
-    print("=== MENU ===")
-    print("1 - Calcular área do círculo")
+    print("=== 😋MENU ERIC  ===")
+    print("1 - Calcular área de um círculo")
     print("2 - Calcular circunferência")
-    print("3 - Sair")
+    print("3 - Sair do programa")
 
-    escolha = input("Escolha uma opção: ")
+    escolha = input("Escolha uma opção: ").strip()
 
     if escolha == "1":
-        raio = float(input("Digite o raio do círculo: "))
+        raio = float(input("Digite o raio do círculo: ").replace(",", "."))
+    
         area = math.pi * raio ** 2
         print(f"A área do círculo é: {area:.2f}")
     elif escolha == "2":
