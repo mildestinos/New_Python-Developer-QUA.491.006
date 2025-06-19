@@ -1,22 +1,36 @@
 import datetime
 import os
 
-# Recebe nome e idade
+# Recebe nome
 nome = input("Digite seu nome: ")
-idade = int(input("Digite sua idade: "))
+
+# Recebe idade com validação
+while True:
+    try:
+        idade = int(input("Digite sua idade: "))
+        break
+    except ValueError:
+        print("Por favor, digite um número válido para a idade.")
 
 while True:
+    # Menu
     os.system('cls' if os.name == 'nt' else 'clear')
-    print("\n--- Filmes em cartaz ---")
+    print("\n--- Filmes em cartaz 🐍 ---")
     print("1 - A Roda Quadrada (Livre)")
     print("2 - A Volta dos Que Não Foram (12 anos)")
     print("3 - Poeira em Alto Mar (14 anos)")
     print("4 - As Tranças do Rei Careca (16 anos)")
     print("5 - A Vingança do Peixe Frito (18 anos)")
 
-    sala = int(input("Escolha o número da sala: "))
+    # Escolha da sala com validação
+    try:
+        sala = int(input("Escolha o número da sala: "))
+    except ValueError:
+        print("Entrada inválida! Por favor, digite um número de 1 a 5.")
+        input("Pressione Enter para continuar...")
+        continue
 
-    # 👌Usa match para escolher o filme e a classificação
+    # Usa match para definir o filme e idade mínima
     match sala:
         case 1:
             filme = "A Roda Quadrada"
@@ -34,16 +48,18 @@ while True:
             filme = "A Vingança do Peixe Frito"
             idade_minima = 18
         case _:
-            print("Sala inválida. Tente novamente.")
+            print("Sala inexistente. Favor escolher outra sala.")
+            input("Pressione Enter para continuar...")
             continue
 
-    # Verifica se pode assistir
+    # Verifica se a pessoa pode assistir
     if idade >= idade_minima:
+        print(f"\n✅ Você pode ver o filme '{filme}'.")
         agora = datetime.datetime.now()
         print("\n🎫 Ingresso")
         print("--------------")
         print("Nome:", nome)
-        print("Filme:", filme)
+        print(f"Filme: {filme} - Idade mínima: {idade_minima}")
         print("Sala:", sala)
         print("Data:", agora.strftime("%d/%m/%Y"))
         print("Hora:", agora.strftime("%H:%M:%S"))
@@ -51,4 +67,5 @@ while True:
         print("-------------------")
         break
     else:
-        print("Você não tem idade suficiente para ver esse filme. Escolha outro.")
+        print(f"\n❌ {nome}, você **não tem idade para ver o filme** '{filme}'.")
+        input("Pressione Enter para escolher outro filme...")

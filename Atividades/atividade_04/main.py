@@ -4,13 +4,13 @@
 
 """
 
-import time
+import datetime
 import os
-
+import time
 while True:
     # Pega a hora atual
         os.system('cls' if os.name == 'nt' else 'clear')
 
         # Formata no estilo brasileiro
-        print(time.strftime("%H:%M:%S"))
+        print(datetime.datetime.now().strftime("%H:%M:%S"))
         time.sleep(1)
