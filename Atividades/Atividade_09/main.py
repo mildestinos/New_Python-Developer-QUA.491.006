@@ -1,26 +1,6 @@
-'''
-# TODO - atividade: Crie um programa que faça as seguintes funções:
-# Cadastre um novo usuário
-# Liste todos os usuários cadastrados
-# Altere os dados de um usuário
-# Fazer o sorteio de usuário
-# Exclua um usuário
-# Saia do programa
-# NOTE - dados do usuário:
-# - Nome completo
-# - Data de Nascimento
-# - E-mail
-# - CPF
-# - Telefone
-# - Gênero
-# - Data do cadastro (pegar do sistema)
-# - Hora do cadastro (pegar do sistema)
-# ---
-
-
-'''
 import os
 import random
+
 usuarios = []
 
 while True:
@@ -35,8 +15,9 @@ while True:
     try:
         opcao = input("Informe a opção desejada: ").strip()
         os.system('cls' if os.name == 'nt' else 'clear')
+
         match opcao:
-            case "1": #cadastrar
+            case "1":  # cadastrar
                 try:
                     novo_nome = input("Informe novo nome: ").title().strip()
                     usuarios.append(novo_nome)
@@ -44,51 +25,62 @@ while True:
                 except Exception as e:
                     print(f"Erro ao adicionar nome: {e}")
 
-            case "2": #listar
+            case "2":  # listar
                 try:
                     if usuarios:
-                        print("Nomes Cadastrados")
-                        for i, nome in enumerate(usuarios,1):
+                        print("Nomes Cadastrados:")
+                        for i, nome in enumerate(usuarios, 1):
                             print(f"{i:02d}. {nome}")
-                    else:
-                        print("A lista Esta vazia")
-                except Exception as e: 
-                    print(f"Erro ao listar  nomes: {e}")
-
-            case "3": #alterar dados
-                try:
-                    nome_antigo = input ("Digite o nome que deseja alterar:").title().strip()
-                    if nome_antigo in usuarios:
-                        novo_nome = input ("Digite o  novo nome:").title().strip()
-                        indice = usuarios.index (nome_antigo)
-                        usuarios[indice] = novo_nome
-                        print("Nome alterado com sucesso!")
-                    else:
-                         print("nome não encontrado da lista.")
-                except Exception as e:
-                    print(f"Erro ao alterar nome: {e}")
-
-            case "4": # fazer sorteio
-                try:
-                    if usuarios:
-                        for usuario in sorted (usuarios):
-                            print(usuarios)
                     else:
                         print("A lista está vazia.")
                 except Exception as e:
-                    print(f"Não foi possível realizar o sorteio. {e}.")
-    finally:
-        continue
+                    print(f"Erro ao listar nomes: {e}")
 
-                        
-        case _:
-                    print("Opção inválida. Tente novamente.")
+            case "3":  # alterar dados
+                try:
+                    nome_antigo = input("Digite o nome que deseja alterar: ").title().strip()
+                    if nome_antigo in usuarios:
+                        novo_nome = input("Digite o novo nome: ").title().strip()
+                        indice = usuarios.index(nome_antigo)
+                        usuarios[indice] = novo_nome
+                        print("Nome alterado com sucesso!")
+                    else:
+                        print("Nome não encontrado na lista.")
+                except Exception as e:
+                    print(f"Erro ao alterar nome: {e}")
 
-        input("\nPressione Enter para continuar...")  # pausa para o usuário ver o resultado
+            case "4":  # fazer sorteio
+                try:
+                    if usuarios:
+                        sorteado = random.choice(usuarios)
+                        print(f"Usuário sorteado: {sorteado}")
+                    else:
+                        print("A lista está vazia.")
+                except Exception as e:
+                    print(f"Não foi possível realizar o sorteio. {e}")
+
+            case "5":  # excluir usuário
+                try:
+                    nome_excluir = input("Digite o nome que deseja excluir: ").title().strip()
+                    if nome_excluir in usuarios:
+                        usuarios.remove(nome_excluir)
+                        print(f"{nome_excluir} foi removido da lista.")
+                    else:
+                        print("Nome não encontrado na lista.")
+                except Exception as e:
+                    print(f"Erro ao excluir nome: {e}")
+
+            case "6":  # sair
+                print("Encerrando o programa...")
+                break
+
+            case _:  # opção inválida
+                print("Opção inválida. Tente novamente.")
+
+        input("\nPressione Enter para continuar...")
         os.system('cls' if os.name == 'nt' else 'clear')
 
     except Exception as e:
         print(f"Ocorreu um erro: {e}")
         input("\nPressione Enter para continuar...")
         os.system('cls' if os.name == 'nt' else 'clear')
-
