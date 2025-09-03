@@ -1,14 +1,17 @@
-from sqlalchemy.orm import declarative_base
 from sqlalchemy import Column, Integer, String, Date
 
-# Criação do objeto Base
-Base = declarative_base()
+def criar_tb_pessoa(engine, Base):
+    try:
+        class Pessoa(Base):
+            __tablename__ = "pessoa"
 
-# Definição da entidade Pessoa
-class Pessoa(Base):
-    __tablename__ = 'pessoa'
+            id_pessoa = Column(Integer, primary_key=True, autoincrement=True)
+            nome = Column(String, nullable=False)
+            email = Column(String, nullable=False, unique=True)
+            data_nascimento = Column(Date, nullable=False)
+        
+        Base.metadata.create_all(engine)
 
-    id_pessoa = Column(Integer, primary_key=True, autoincrement=True)
-    nome = Column(String(100), nullable=False)
-    email = Column(String(100), unique=True, nullable=False)
-    data_nasc = Column(Date, nullable=True)
+        return Pessoa
+    except Exception as e:
+        print(f"Não foi possível conectar ao banco. {e}")
